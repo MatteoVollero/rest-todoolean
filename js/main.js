@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
   get();
-
+  cancella();
   $(".creator").keydown(function(){
     if(event.keyCode == 13){
       create();
@@ -48,14 +48,26 @@ $(document).ready(function() {
         text: $(".creator").val()
       }
     });
+
+    $("ul li").remove();
+    get();
+    console.log("Ho fatto la get");
   };
-  function delete(){
-    for(var i = 4; i <=716){
-      $.ajax(
-      {
-        url:"http://157.230.17.132:3036/todos/"+i,
-        method: "DELETE"
+  function cancella(){
+    for(var i = 3; i < 722-3; i++){
+      $.ajax({
+        url: "http://157.230.17.132:3036/todos/"+i,
+        method: "DELETE",
+
+        success: function(){
+
+        },
+
+        errror: function(errore){
+          console.log(errore);
+        }
+
       });
-    }
+    }  
   };
 });
